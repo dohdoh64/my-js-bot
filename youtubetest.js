@@ -13,10 +13,16 @@ myyt.prototype.respond = function(query, msg) {
     if (error) {
       msg.channel.sendMessage("There was an error finding requested video.");
     } else {
-      vidid = result.items[0].id.videoId;
-			vidtitle = result.items[0].snippet.title;
-			vid = [vidid, vidtitle];
-      return vid;
+			if (result.items.length === 0) {
+				console.log(result + " is a meme");
+				let k = "nores";
+				return k;
+			} else {
+				vidid = result.items[0].id.videoId;
+				vidtitle = result.items[0].snippet.title;
+				vid = [vidid, vidtitle];
+				return vid;
+			}
     }
   });
 };
